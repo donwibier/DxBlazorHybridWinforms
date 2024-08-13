@@ -1,0 +1,78 @@
+﻿@implements IDisposable
+@page "/"
+@inject IJSRuntime JSRuntime
+
+
+<PageTitle>Welcome</PageTitle>
+
+<div class="welcome flex-column w-100">
+    <div class="welcome-title d-flex flex-column w-100">
+        <div class="welcome-title-header">Hello World!</div>
+        <div class="welcome-title-content">Welcome to your new DevExpress Blazor Application</div>
+        @if (!string.IsNullOrEmpty(Message))
+        {
+            <div class="alert alert-success" role="alert">
+                @Message
+            </div>
+        }
+    </div>
+    <!--btnwinwidth--> 
+    <!--chkcelcius-->
+    <div class="welcome-cards d-flex">
+
+        <NavLink class="welcome-card" href="/counter">
+            <svg class="welcome-card-img" alt="counter card">
+                <use href="images/cards.svg#counter"></use>
+            </svg>
+            <div class="welcome-card-text">Counter</div>
+            <div class="welcome-card-back"></div>
+        </NavLink>
+        <NavLink class="welcome-card" href="/weather">
+            <svg class="welcome-card-img" alt="weather card">
+                <use href="images/cards.svg#weather"></use>
+            </svg>
+            <div class="welcome-card-text">Weather</div>
+            <div class="welcome-card-back"></div>
+        </NavLink>
+        <NavLink class="welcome-card" href="/customers">
+            <svg class="welcome-card-img" alt="weather card">
+                <use href="images/cards.svg#counter"></use>
+            </svg>
+            <div class="welcome-card-text">Customers</div>
+            <div class="welcome-card-back"></div>
+        </NavLink>
+
+
+    </div>
+</div>
+
+@code {
+    public string Message { get; set; } = default!;
+
+    //.netref
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+    }
+
+    //.scch
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        await base.OnAfterRenderAsync(firstRender);
+        if (firstRender)
+        {
+            //.blregapp
+        }
+    }
+
+    //.getwidth
+
+    //.winrsz
+
+    public void Dispose()
+    {
+
+    }
+}

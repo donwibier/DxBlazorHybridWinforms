@@ -1,0 +1,25 @@
+﻿@inherits LayoutComponentBase
+@inject NavigationManager NavigationManager
+
+<div class="page px-3">
+    @if(!string.IsNullOrEmpty(NavigationManager.ToBaseRelativePath(NavigationManager.Uri))) {
+        <div class="py-4">
+            <NavLink href="/" class="button-link">
+                <DxButton RenderStyle="@ButtonRenderStyle.Dark" Text="Back to Home" RenderStyleMode="@ButtonRenderStyleMode.Text" CssClass="back-button" IconCssClass="icon-back"></DxButton>
+            </NavLink>
+        </div>
+    }
+    @Body
+</div>
+
+@code {
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+    }
+
+    public void Navigate(string uri)
+    {
+        NavigationManager.NavigateTo(uri);
+    }
+}

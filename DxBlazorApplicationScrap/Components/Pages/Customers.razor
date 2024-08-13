@@ -1,0 +1,59 @@
+﻿@page "/customers"
+@rendermode InteractiveServer
+@inject CustomerStore customerStore
+
+<DxGrid Data="@customerStore.Customers" EditMode="GridEditMode.PopupEditForm"        
+        EditModelSaving="Grid_EditModelSaving" DataItemDeleting="Grid_DataItemDeleting"
+        KeyFieldName="@nameof(Customer.customer_id)"
+        CssClass="mw-1100">
+    <Columns>
+        <DxGridCommandColumn Width="100px" NewButtonVisible="true" 
+            EditButtonVisible="false" DeleteButtonVisible="true" />
+        <DxGridDataColumn Caption="Lastname" FieldName="@nameof(Customer.last_name)" />
+        <DxGridDataColumn Caption="Firstname" FieldName="@nameof(Customer.first_name)" />
+        <DxGridDataColumn Caption="Email" FieldName="@nameof(Customer.email)" />
+        <DxGridDataColumn Caption="Country" FieldName="@nameof(Customer.country)" />
+        <DxGridDataColumn Caption=" " FieldName="@nameof(Customer.customer_id)" TextAlignment="GridTextAlignment.Center">
+            <CellDisplayTemplate Context="ctx">
+                <a href="/customer/edit/@ctx.Value">
+                    Edit    
+                </a>
+            </CellDisplayTemplate>
+        </DxGridDataColumn>
+    </Columns>
+    <EditFormTemplate Context="EditFormContext">
+        @{
+            var item = (Customer)EditFormContext.EditModel;
+        }
+        <DxFormLayout CssClass="w-100">
+            <DxFormLayoutItem Caption="Firstname:" ColSpanMd="6">
+                @EditFormContext.GetEditor(nameof(Customer.first_name))
+            </DxFormLayoutItem>
+            <DxFormLayoutItem Caption="Lastname:" ColSpanMd="6">
+                @EditFormContext.GetEditor(nameof(Customer.last_name))
+            </DxFormLayoutItem>
+            <DxFormLayoutItem Caption="Email:" ColSpanMd="6">
+                @EditFormContext.GetEditor(nameof(Customer.email))
+            </DxFormLayoutItem>
+            <DxFormLayoutItem Caption="Country:" ColSpanMd="6">
+                @EditFormContext.GetEditor(nameof(Customer.country))
+            </DxFormLayoutItem>
+
+        </DxFormLayout>
+    </EditFormTemplate>
+</DxGrid>
+
+@code {
+    void Grid_EditModelSaving(GridEditModelSavingEventArgs e)
+    {
+        if (e.IsNew)
+            customerStore.Add((Customer)e.EditModel);
+        else
+            customerStore.Update((Customer)e.EditModel);
+        
+    }
+    void Grid_DataItemDeleting(GridDataItemDeletingEventArgs e)
+    {
+        customerStore.Remove((Customer)e.DataItem);        
+    }
+}

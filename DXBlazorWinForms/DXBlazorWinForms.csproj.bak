@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk.Razor">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <UseWindowsForms>true</UseWindowsForms>
+    <ForceDesignerDpiUnaware>true</ForceDesignerDpiUnaware>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="DevExpress.Win.Design" Version="23.2.4" />
+    <PackageReference Include="DevExpress.Blazor" Version="23.2.4" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebView.WindowsForms" Version="8.0.7" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="8.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="8.0.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="mscorlib" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="DevExpress.Utils.v22.2" />
+    <Reference Include="System" />
+    <Reference Include="DevExpress.XtraEditors.v22.2" />
+    <Reference Include="DevExpress.XtraGrid.v22.2" />
+    <Reference Include="System.Core" />
+    <Reference Include="DevExpress.Data.Desktop.v22.2" />
+    <Reference Include="DevExpress.XtraLayout.v22.2" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="DevExpress.XtraBars.v22.2" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="DevExpress.XtraTreeList.v22.2" />
+    <Reference Include="EntityFramework" />
+    <Reference Include="DevExpress.Data.v22.2" />
+    <Reference Include="DevExpress.Drawing.v22.2" />
+    <Reference Include="DevExpress.Mvvm.v22.2" />
+    <Reference Include="DevExpress.Printing.v22.2.Core" />
+  </ItemGroup>
+  
+</Project>

@@ -1,0 +1,55 @@
+﻿@page "/customer/edit/{id:int}"
+
+@inject NavigationManager navigationManager
+@inject CustomerStore customerStore
+
+<h1>Edit Customer</h1>
+
+<div class="card">
+    <DxFormLayout CssClass="w-100 p-3" Data="@editFormData">
+        <DxFormLayoutItem Caption="Firstname:" ColSpanMd="6">
+            <DxTextBox @bind-Text="@editFormData.first_name" />
+        </DxFormLayoutItem>
+        <DxFormLayoutItem Caption="Lastname:" ColSpanMd="6">
+            <DxTextBox @bind-Text="@editFormData.last_name" />
+        </DxFormLayoutItem>
+        <DxFormLayoutItem Caption="Email:" ColSpanMd="6" >
+            <DxTextBox @bind-Text="@editFormData.email" />
+        </DxFormLayoutItem>
+        <DxFormLayoutItem Caption="Country:" ColSpanMd="6">
+            <DxTextBox @bind-Text="@editFormData.country" />
+        </DxFormLayoutItem>
+        <DxFormLayoutItem BeginRow="true" ColSpanXs="12">
+            <div class="d-flex">
+                <div class="p-2 flex-grow-1">&nbsp;</div>
+                <div class="p-2"><DxButton RenderStyle="ButtonRenderStyle.Primary" Text="OK" Click="@OkClick" /></div>
+                <div class="p-2"><DxButton RenderStyle="ButtonRenderStyle.Secondary" Text="Cancel" Click="@CancelClick" /></div>
+            </div>
+        </DxFormLayoutItem>
+    </DxFormLayout>
+
+</div>
+
+@code {
+
+    [Parameter] public int id { get; set; }
+
+    protected Customer editFormData { get; set; } = new Customer();
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        editFormData = customerStore.Customers.First(c=>c.customer_id == id);        
+    }
+
+    void OkClick()
+    {
+        customerStore.Update(editFormData);
+        navigationManager.NavigateTo("/customers");
+    }
+
+    void CancelClick()
+    {
+        navigationManager.NavigateTo("/customers");
+    }
+}
